@@ -1,0 +1,42 @@
+@import "tailwindcss";
+:root {
+  --color-background: #f0f0f0;
+  --color-foreground: #0a0a0a;
+  --color-primary: #122357;
+  --color-primaryLight: #2850c5;
+  --color-secondary: #ececec;
+  --color-hover: #e0e0e0;
+  --color-darkShadow: #000008;
+  --gantari: 
+}
+
+.dark {
+  --color-background: #0a0a0a;
+  --color-foreground: #ffffff;
+  --color-primary: #122357;
+  --color-secondary: #0e0e0f;
+  --color-hover: #232330;
+}
+
+@theme {
+  --spacing: 4px;
+  --color-background: var(--color-background);
+  --color-foreground: var(--color-foreground);
+  --color-primary: var(--color-primary);
+  --color-primaryLight: var(--color-primaryLight);
+  --color-secondary: var(--color-secondary);
+  --color-hover: var(--color-hover);
+  --color-darkShadow: var(--color-darkShadow);
+  --shadow: 1px 1px 2px #b8b8b8, -1px -1px 2px #ffffff;
+  --shadow-darkmode: 1px 1px 2px #000008, -1px -1px 2px #333338;
+  --shadow-inset: inset 1px 1px 2px #b8b8b8, 1px 1px 2px #ffffff;
+  --shadow-insetDarkmode: inset 1px 1px 2px #000008, 1px 1px 2px #333338;
+  --animate-skeleton: skeleton 2s linear infinite;
+  @keyframes skeleton {
+    0% { background-position: 200% 0;}
+    100% { background-position: -200% 0;}
+  }
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+

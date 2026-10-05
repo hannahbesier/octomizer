@@ -1,0 +1,41 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs/blocks';
+ 
+import * as Button from './Button.stories';
+import * as DropdownSearch from './DropdownSearch.stories';
+import * as Table from './Table.stories';
+import * as Textfield from './Textfield.stories';
+import * as Toggle from './Toggle.stories';
+import * as Tag from './Tag.stories';
+
+<Meta title="Styleguide Documentation" />
+ 
+# Styleguide
+ These are the main styleguide components 
+## Buttons
+Main used buttons
+#### Primary
+<Story of={Button.Primary}/>
+
+#### Secondary
+<Story of={Button.Secondary} />
+
+#### Icon Button
+<Story of={Button.IconButton} />
+
+#### Icon
+<Story of={Button.IconButtonPrimary} />
+
+## DropdownSearch
+<Story of={DropdownSearch.Primary} />
+
+## Table
+<Story of={Table.Default} />
+
+## Textfield
+<Story of={Textfield.Primary} />
+
+## Toggle
+<Story of={Toggle.Primary} />
+
+## Tag
+<Story of={Tag.Primary} />

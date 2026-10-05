@@ -1,0 +1,97 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id     Int     @id @default(autoincrement())
+  name   String
+  email  String  @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  sessions     Session[]
+  createdIssues  Issue[] @relation("IssueCreatedBy")
+  assignedIssues Issue[] @relation("IssueAssignedTo")
+}
+
+model Session {
+  id        String   @id
+  expiresAt DateTime
+
+  userId    Int?
+  user User? @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+}
+
+model Project {
+  id     Int     @id @default(autoincrement())
+  name   String  @unique
+
+  features Feature[]
+  issues Issue[]
+}
+
+model Feature {
+  id     Int     @id @default(autoincrement())
+  name   String  @unique
+
+  projectId Int?
+  project   Project? @relation(fields: [projectId], references: [id])
+
+  parentId Int?
+  parent   Feature?  @relation("FeatureHierarchy", fields: [parentId], references: [id])
+  children Feature[] @relation("FeatureHierarchy")
+  
+  issues Issue[]
+}
+
+model Tag {
+  id     Int     @id @default(autoincrement())
+  name   String  @unique
+
+  issues Issue[]
+}
+model State {
+  id     Int     @id @default(autoincrement())
+  name   String  @unique
+
+  issues Issue[]
+}
+
+model Issue {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique
+  storypoints Int
+  markdown    String
+
+  stateId Int?
+  state   State? @relation(fields: [stateId], references: [id])
+
+  createdById Int?
+  createdBy   User?  @relation("IssueCreatedBy", fields: [createdById], references: [id])
+
+  assignedToId Int?
+  assignedTo   User?  @relation("IssueAssignedTo", fields: [assignedToId], references: [id])
+
+  projectId Int?
+  project   Project? @relation(fields: [projectId], references: [id])
+
+  featureId Int?
+  feature   Feature? @relation(fields: [featureId], references: [id])
+
+  tags Tag[]
+}
