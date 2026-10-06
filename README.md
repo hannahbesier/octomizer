@@ -31,11 +31,41 @@ This is a web-app for project management that is designed for use by small devel
 
 ## Getting started
 
+## Install
+If you haven't installed Git yet, you can do so [here](https://git-scm.com/install/windows)
+. Open a terminal and check with 
+
+    git -v
+
+If you haven't installed node.js, install it from [here](https://nodejs.org/en/download)
+. Reopen the terminal and check with 
+
+    npm -v 
+    node -v
+
+Choose a folder for this project in your terminal.
+To clone the repository with HTTPS, use the following command in your terminal:  
+
+    git clone https://github.com/hannahbesier/octomizer.git
+
+Open the project in your terminal.
+Install the project dependencies:
+
+    npm install
+
+Create a file called ```.env``` in the project next to README.md and enter ```DATABASE_URL=YOUR_DATABASE_URL_HERE```. To generate prisma files:
+
+    npx prisma generate
+
+You can fill in the database manually in prisma studio:
+    
+    npx prisma studio
+
 ### Use this command to start the app in your terminal:
 
     npm run dev
 
-Server-side debugging: // https://nextjs.org/docs/app/guides/debugging
+Server-side [debugging](https://nextjs.org/docs/app/guides/debugging)
 
     npm run dev -- --inspect
 
@@ -92,15 +122,15 @@ The prisma studio app will open automatically in your browser. If not:
 
 - Pagination
 
-- Global Error handling / Error messages: https://nextjs.org/docs/app/api-reference/file-conventions/error#global-error
+- [Global Error handling / Error messages](https://nextjs.org/docs/app/api-reference/file-conventions/error#global-error)
 
 - 404 
 
 - Lazy loading check
 
-- Use Streaming: https://nextjs.org/docs/app/guides/streaming
+- [Use Streaming](https://nextjs.org/docs/app/guides/streaming)
 
-- Next cookies: https://nextjs.org/docs/app/api-reference/functions/cookies
+- [Next cookies](https://nextjs.org/docs/app/api-reference/functions/cookies)
 
 - Feature and project description
 

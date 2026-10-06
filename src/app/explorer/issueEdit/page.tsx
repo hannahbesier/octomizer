@@ -149,7 +149,7 @@ function IssueEdit() {
               <textarea
                 value={markdown}
                 onChange={(e) => setMarkdown(e.target.value)}
-                className="h-96 w-full h-full shadow-inset dark:shadow-insetDarkmode rounded-sm p-4"
+                className="min-h-100 h-fit w-full h-full shadow-inset dark:shadow-insetDarkmode rounded-sm p-4"
                 placeholder="Enter markdown..."
               />
             ) : (
