@@ -56,7 +56,7 @@ function IssueEdit() {
   }
   if (issueIsLoading) return <Skeleton />;
   return (
-    <div className="flex flex-row h-fit sm:pl-10 sm:pr-10 p-6">
+    <div className="flex flex-row h-full sm:pl-10 sm:pr-10 p-6">
       <div className="flex flex-col w-full h-fit">
         <div className="flex flex-row sm:pt-2 gap-4 w-full sm:pr-4">
           {editIssue ? (

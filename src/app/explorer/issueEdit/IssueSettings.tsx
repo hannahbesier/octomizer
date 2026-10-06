@@ -54,7 +54,7 @@ const IssueSettings = ({
       data-open={openSettings}
       className="data-[overlay=true]:absolute data-[overlay=true]:right-5 data-[overlay=true]:top-25 data-[overlay=true]:left-5 data-[overlay=true]:bottom-5 data-[overlay=true]:z-50 data-[overlay=true]:block 
        md:block hidden md:data-[open=false]:hidden md:data-[open=true]:block
-      md:w-100 shadow dark:shadow-darkmode bg-secondary rounded-sm pt-2 p-4"
+      md:w-100 shadow dark:shadow-darkmode bg-secondary rounded-sm pt-2 p-4 h-full"
       {...props}
     >
       <div className=" flex flex-col gap-4">
