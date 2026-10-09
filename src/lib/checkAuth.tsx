@@ -19,7 +19,7 @@ export default function checkAuth<P extends object>(
       if (!currentUser) {
         const timer = setTimeout(() => {
           if (!currentUser) {
-            redirect("/login");
+            redirect("/");
           }
         }, 3000);
 

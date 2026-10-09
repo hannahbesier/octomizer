@@ -2,7 +2,6 @@
 import Button from "@/components/Button";
 import Card from "@/components/Card";
 import Skeleton from "@/components/Skeleton";
-import checkAuth from "@/lib/checkAuth";
 import {
   useGetIssuesQuery,
   useGetUserQuery,
@@ -13,10 +12,10 @@ import { IssueTable } from "@/store/types";
 import { Launch } from "@carbon/icons-react";
 import { skipToken } from "@reduxjs/toolkit/query";
 import { useRouter } from "next/navigation";
-import { ReactNode, useEffect } from "react";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
-function Home() {
+export default function Home() {
   const sessionIdSelector = useSelector(sessionId);
   const { data: currentUser } = useGetUserQuery(sessionIdSelector ?? skipToken);
   useEffect(() => { }, [sessionIdSelector]);
@@ -26,7 +25,24 @@ function Home() {
   >(currentUser?.id ?? 0);
   const { data: users, isLoading: userIsLoading } = useGetUsersQuery();
   const router = useRouter();
-  if (!currentUser) return null;
+  if (!currentUser) return (
+    <div className="flex flex-col gap-10 sm:gap-15 h-full w-full items-center sm:justify-center ">
+      <div className="flex sm:flex-row sm:gap-10 flex-col text-2xl sm:text-4xl w-fit pb-0 p-10 sm:w-full justify-center">
+        <p>{"plan |"}</p>
+        <p>{"organize |"}</p>
+        <p>{"document |"}</p>
+        <p className="text-primaryLight">{"your dev projects"}</p>
+
+      </div>
+
+      <Button size="large" primary={true} label="Getting started" onClick={() => router.push("./login")} />
+      <div className=" shadow dark:shadow-darkmode max-w-[60%] max-h-[60%]">
+        <img src=".\img\IssueEditWhite.png" alt="Issue Edit Example" className="hidden sm:block dark:sm:hidden h-full w-full" />
+        <img src=".\img\IssueEditMobile.png" alt="Issue Edit Example" className="block sm:hidden dark:hidden h-full w-full" />
+        <img src=".\img\IssueBoardBlackMobile.png" alt="Issue Edit Example" className="hidden dark:block dark:sm:hidden h-full w-full" />
+        <img src=".\img\IssueBoardBlack.png" alt="Issue Edit Example" className=" hidden dark:hidden dark:sm:block h-full w-full" />
+      </div>
+    </div>);
   if (issueIsLoading || userIsLoading) return <Skeleton />;
   return (
     <div className="w-full flex flex-col">
@@ -85,4 +101,3 @@ function Home() {
     </div>
   );
 }
-export default checkAuth(Home);
