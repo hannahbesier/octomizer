@@ -85,7 +85,7 @@ export default function Sidebar({
       data-overlay={mobile && sideBar}
       data-open={sideBar}
       className="
-      data-[overlay=true]:absolute data-[overlay=true]:right-5 data-[overlay=true]:top-25 data-[overlay=true]:left-5 data-[overlay=true]:bottom-5 data-[overlay=true]:z-50 data-[overlay=true]:block 
+      data-[overlay=true]:absolute data-[overlay=true]:right-5 data-[overlay=true]:top-25 data-[overlay=true]:left-5 data-[overlay=true]:bottom-5 data-[overlay=true]:z-2 data-[overlay=true]:block 
       md:block hidden md:data-[open=false]:hidden md:data-[open=true]:block
       md:w-100 shadow dark:shadow-darkmode bg-secondary rounded-sm p-2 
        "

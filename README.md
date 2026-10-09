@@ -37,7 +37,7 @@ If you haven't installed Git yet, you can do so [here](https://git-scm.com/insta
 
     git -v
 
-If you haven't installed node.js, install it from [here](https://nodejs.org/en/download)
+If you haven't installed node.js version 24 (storybook has currently issues with newer one), install it from [here](https://nodejs.org/en/download)
 . Reopen the terminal and check with 
 
     npm -v 
