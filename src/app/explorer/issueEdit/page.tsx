@@ -1,7 +1,7 @@
 "use client";
 import Button from "@/components/Button";
 import Textfield from "@/components/Textfield";
-import { Close, Edit, OpenPanelFilledRight } from "@carbon/icons-react";
+import { Close, Edit, OpenPanelFilledRight, Save } from "@carbon/icons-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
@@ -58,7 +58,7 @@ function IssueEdit() {
   return (
     <div className="flex flex-row h-full sm:pl-10 sm:pr-10 p-6">
       <div className="flex flex-col w-full h-fit">
-        <div className="flex flex-row sm:pt-2 gap-4 w-full sm:pr-4">
+        <div className="flex flex-row sm:pt-2 gap-4 w-fit sm:pr-4">
           {editIssue ? (
             <Textfield
               value={currentName}
@@ -68,12 +68,14 @@ function IssueEdit() {
             <h1 className="text-xl w-full">{issue.name ?? ""}</h1>
           )}
 
-          <div className="flex gap-2 sm:gap-4 h-8 items-center">
+          <div className="flex gap-2 sm:gap-4 h-8 items-center w-fit">
             {editIssue ? (
               <Button
                 primary={true}
                 size="medium"
                 label="Save"
+                icon={<Save size="20" className="text-white"/>}
+                mobileOnlyIcon={true}
                 onClick={() => handleSave()}
               />
             ) : (
