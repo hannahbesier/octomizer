@@ -58,7 +58,7 @@ function IssueEdit() {
   return (
     <div className="flex flex-row h-full sm:pl-10 sm:pr-10 p-6">
       <div className="flex flex-col w-full h-fit">
-        <div className="flex flex-row sm:pt-2 gap-4 w-fit sm:pr-4">
+        <div className="flex flex-row sm:pt-2 gap-4 w-auto sm:pr-4">
           {editIssue ? (
             <Textfield
               value={currentName}
