@@ -36,7 +36,7 @@ function IssueBoard() {
     return <Skeleton />;
   }
   return (
-    <div className="h-full flex p-10 flex-col sm:flex-row sm:overflow-auto w-full sm:justify-center gap-10">
+    <div className="h-full sm:mb-0 mb-40 flex p-10 flex-col sm:flex-row sm:overflow-auto w-full sm:justify-center gap-10">
       <DragDropProvider
         onDragStart={(event) => {
           const sourceColumn = board.find(

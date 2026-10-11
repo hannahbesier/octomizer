@@ -14,8 +14,8 @@ export default function Button({
   ...props
 }: ButtonProps) {
   const sizeBtn = {
-    small: "pl-1 pr-1",
-    medium: "pl-2 pr-2 p-1",
+    small: "sm:pl-1 sm:pr-1 pl-2 pr-2 h-8 sm:h-fit",
+    medium: "pl-2 pr-2 p-1 h-8 sm:h-fit",
     large: "pl-6 pr-6 p-2 text-lg",
   }[size];
   const styleBtn = {

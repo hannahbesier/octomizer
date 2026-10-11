@@ -71,7 +71,7 @@ function Explorer() {
       label: "Feature name",
       render: (_, feature) => (
         <button
-          className="cursor-pointer whitespace-nowrap"
+          className="h-full w-full text-primaryLight flex flex-start items-center cursor-pointer whitespace-nowrap"
           onClick={() => dispatch(setExplorerContent(feature.id))}
         >
           {feature.name}
@@ -82,7 +82,7 @@ function Explorer() {
   if (projectIsLoading) return <Skeleton />;
   return (
     <div className="flex flex-col gap-4 p-10 h-full">
-      <div className="flex flex-row gap-4 h-full">
+      <div data-sidebar={sideBar} className="flex flex-row gap-4 h-full sm:data-[sidebar=true]:ml-105 ml-0">
         {sideBar ? (
           <Sidebar
             sideBar={sideBar}
@@ -131,7 +131,7 @@ function Explorer() {
               )}
             </div>
           </div>
-          <div className="flex flex-row gap-4">
+          <div className="flex flex-row items-center gap-4">
             <Button
               size="small"
               label="New"

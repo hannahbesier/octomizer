@@ -39,10 +39,10 @@ export default function DropdownSearch({
   return (
     <div className="flex flex-col relative w-full" tabIndex={-1} onBlur={handleBlur}>
       {" "}
-      <label className="text-xs pl-1">{label}</label>
+      <label className="text-sm sm:text-xs pl-1">{label}</label>
       <div className="flex flex-row">
         <input
-          className="shadow-inset dark:shadow-insetDarkmode rounded-l-sm pl-1 w-full"
+          className="shadow-inset dark:shadow-insetDarkmode rounded-l-sm pl-2 w-full h-8 sm:h-fit"
           type="search"
           list="assignedTo"
           value={currentValue ?? "default"}
@@ -53,7 +53,7 @@ export default function DropdownSearch({
           {...props}
         />
         <button
-          className="shadow-inset dark:shadow-insetDarkmode rounded-r-sm"
+          className="shadow-inset dark:shadow-insetDarkmode rounded-r-sm sm:fit w-8 justify-center flex items-center"
           onClick={() => ( dropdown ? setDropdown(false) : setDropdown(true))}
         >
           <ChevronDown size="24" />

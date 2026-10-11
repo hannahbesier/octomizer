@@ -57,8 +57,8 @@ function IssueEdit() {
   if (issueIsLoading) return <Skeleton />;
   return (
     <div className="flex flex-row h-full sm:pl-10 sm:pr-10 p-6">
-      <div className="flex flex-col w-full h-fit">
-        <div className="flex flex-row sm:pt-2 gap-4 w-auto sm:pr-4">
+      <div data-opensettings={openSettings} className="sm:data-[opensettings=true]:mr-100 mr-0 flex flex-col w-full h-full">
+        <div data-opensettings={openSettings ?? false} className="flex flex-row sm:pt-2 gap-4 w-auto sm:data-[opensettings=true]:pr-8">
           {editIssue ? (
             <Textfield
               value={currentName}
@@ -119,9 +119,9 @@ function IssueEdit() {
             />
           </div>
         </div>
-        <div className="flex flex-col gap-4 mt-4 h-fit">
+        <div className="flex flex-col gap-4 mt-4 h-full">
           <div className="flex flex-col sm:flex-row gap-4">
-            <div className="flex  gap-4">
+            <div className="flex items-center gap-4">
               <p>assigned to:</p>
               {issue.assignedTo ? (
                 <Button
@@ -133,7 +133,7 @@ function IssueEdit() {
                 <p>none</p>
               )}{" "}
             </div>
-            <div className="flex gap-4">
+            <div className="flex items-center gap-4">
               <p>in project:</p>
               {issue.project ? (
                 <Button
@@ -146,12 +146,12 @@ function IssueEdit() {
               )}
             </div>
           </div>
-          <div className="sm:pr-18 h-fit">
+          <div data-opensettings={openSettings ?? false} className="sm:data-[opensettings=true]:pr-8 h-full">
             {editIssue ? (
               <textarea
                 value={markdown}
                 onChange={(e) => setMarkdown(e.target.value)}
-                className="min-h-100 h-fit w-full h-full shadow-inset dark:shadow-insetDarkmode rounded-sm p-4"
+                className="h-full w-full shadow-inset dark:shadow-insetDarkmode rounded-sm p-4"
                 placeholder="Enter markdown..."
               />
             ) : (

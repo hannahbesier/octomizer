@@ -17,7 +17,7 @@ import {
   setExplorerContent,
 } from "@/store/store";
 
-function Feature({ featureId }: { featureId: number }) {
+function Feature({ featureId, setSideBar, mobile, }: { featureId: number; setSideBar: (arg0: boolean) => void; mobile: boolean; }) {
   const { data: featureQuery, isLoading: featureIsLoading } =
     useGetFeatureQuery(featureId);
   const dispatch = useDispatch();
@@ -41,7 +41,7 @@ function Feature({ featureId }: { featureId: number }) {
                 <CaretRight size="16" className="text-foreground" />
               )
             ) : (
-              <CaretRight size="16" className="text-transparent" />
+              <CaretRight size="16" className="invisible" />
             )
           }
           onClick={() => {
@@ -49,9 +49,9 @@ function Feature({ featureId }: { featureId: number }) {
           }}
         />
         <button
-          className={`flex rounded-sm pl-1 w-full cursor-pointer hover:bg-hover ${contentSelector === featureId ? "bg-hover" : ""}`}
+          className={`flex items-center h-8 sm:fit rounded-sm pl-1 w-full cursor-pointer hover:bg-hover ${contentSelector === featureId ? "bg-hover" : ""}`}
           key={featureQuery.id}
-          onClick={() => dispatch(setExplorerContent(featureQuery.id))}
+          onClick={() => {dispatch(setExplorerContent(featureQuery.id)); if (mobile) setSideBar(false);}}
         >
           {featureQuery.name}
         </button>
@@ -59,7 +59,7 @@ function Feature({ featureId }: { featureId: number }) {
       <div className="flex flex-col pl-2">
         {isExpanded ? (
           featureQuery.children.map((child: FeatureTable) => (
-            <Feature key={child.id} featureId={child.id} />
+            <Feature key={child.id} featureId={child.id} setSideBar={setSideBar} mobile={mobile}/>
           ))
         ) : (
           <></>
@@ -87,8 +87,7 @@ export default function Sidebar({
       className="
       data-[overlay=true]:absolute data-[overlay=true]:right-5 data-[overlay=true]:top-25 data-[overlay=true]:left-5 data-[overlay=true]:bottom-5 data-[overlay=true]:z-2 data-[overlay=true]:block 
       md:block hidden md:data-[open=false]:hidden md:data-[open=true]:block
-      md:w-100 shadow dark:shadow-darkmode bg-secondary rounded-sm p-2 
-       "
+      md:w-100 shadow dark:shadow-darkmode bg-secondary rounded-sm p-2  fixed left-10 bottom-5 top-25"
     >
       <div className="flex flex-col pl-2 pr-2 p-1 gap-2">
         <div className="flex flex-row items-center w-full">
@@ -108,7 +107,7 @@ export default function Sidebar({
         <div className="flex flex-col">
           {project ? (
             project.features.map((feature) => (
-              <Feature key={feature.id} featureId={feature.id} />
+              <Feature key={feature.id} featureId={feature.id} setSideBar={setSideBar} mobile={mobile}/>
             ))
           ) : (
             <></>

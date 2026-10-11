@@ -8,11 +8,11 @@ type TextfieldProps = React.InputHTMLAttributes<HTMLInputElement> & {
 export default function Textfield({ label, value, setValue, valable = true, password, ...props }: TextfieldProps) {
   return (
     <div className="flex flex-col w-full">
-      <label className="text-xs pl-1 w-full">{label}</label>
+      <label className="text-sm sm:text-xs pl-1 w-full">{label}</label>
       <input
         key={label}
         type={password ? "password" : "text"}
-        className="shadow-inset dark:shadow-insetDarkmode pl-1 pr-1 rounded-sm w-full"
+        className="shadow-inset dark:shadow-insetDarkmode pl-2 pr-2 rounded-sm w-full h-8 sm:h-fit"
         value={value}
         placeholder={label}
         onChange={(e) => setValue(e.target.value)}

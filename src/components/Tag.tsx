@@ -6,7 +6,7 @@ type TagProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 export default function Tag({tag, ...props}: TagProps) {
     return(
         <div
-              className="flex flex-row w-fit bg-primary text-white rounded-sm pl-1 gap-1 shadow dark:shadow-darkmode *:hover:bg-[#5b73bb]"
+              className="flex flex-row items-center w-fit bg-primary text-white rounded-sm pl-1 gap-1 shadow dark:shadow-darkmode *:hover:bg-[#5b73bb]"
               key={tag}
             >
               {tag}
