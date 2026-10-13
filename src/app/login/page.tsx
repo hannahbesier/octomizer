@@ -12,9 +12,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { sessionId, setSessionId } from "@/store/store";
 import { skipToken } from "@reduxjs/toolkit/query";
 import { redirect } from "next/navigation";
+import LoadingSpin from "@/components/LoadingSpin";
 
 export default function Login() {
-  const [updateSession] = useUpdateSessionMutation();
+  const [updateSession, {isLoading}] = useUpdateSessionMutation();
   const [deleteSession] = useDeleteSessionMutation();
   const sessionIdSelector = useSelector(sessionId);
   const [username, setUsername] = useState("");
@@ -95,11 +96,12 @@ export default function Login() {
               valable={!loginError}
               password={true}
             />
+            <div className="flex flex-row gap-4 items-center">
             <Button
               label="Login"
               primary={true}
               onClick={() => handleLogin()}
-            />
+            />{isLoading ? <LoadingSpin/> : <></>}</div>
           </div>
         )}
       </div>
