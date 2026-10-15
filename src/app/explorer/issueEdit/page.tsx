@@ -1,9 +1,9 @@
 "use client";
 import Button from "@/components/Button";
 import Textfield from "@/components/Textfield";
-import { Close, Edit, OpenPanelFilledRight, Save } from "@carbon/icons-react";
+import { Checkbox, Close, Edit, List, OpenPanelFilledRight, Save, TextBold, TextItalic, TextScale } from "@carbon/icons-react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import rehypeSanitize from "rehype-sanitize"; //https://github.com/rehypejs/rehype-sanitize
 import remarkGfm from "remark-gfm"; // https://github.com/remarkjs/remark-gfm
@@ -31,6 +31,7 @@ function IssueEdit() {
   const [openSettings, setOpenSettings] = useState(mobile ? false : true);
 
   const router = useRouter();
+  const textAreaRef = useRef<HTMLTextAreaElement>(null);
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     if (mobile) setOpenSettings(false);
@@ -54,6 +55,17 @@ function IssueEdit() {
       setEditIssue(false);
     }
   }
+  function insertInTextarea(strBegin: string, strEnd: string) {
+    const textarea = textAreaRef.current;
+    if (textarea !== null) {
+
+      const newTextarea = textarea.value.slice(0, textarea.selectionStart) + strBegin + textarea.value.slice(textarea.selectionStart, textarea.selectionEnd) + strEnd + textarea.value.slice(textarea.selectionEnd);
+      setMarkdown(newTextarea);
+      textarea.value = newTextarea;
+    }
+
+  }
+
   if (issueIsLoading) return <Skeleton />;
   return (
     <div className="flex flex-row h-full sm:pl-10 sm:pr-10 p-6">
@@ -74,7 +86,7 @@ function IssueEdit() {
                 primary={true}
                 size="medium"
                 label="Save"
-                icon={<Save size="20" className="text-white"/>}
+                icon={<Save size="20" className="text-white" />}
                 mobileOnlyIcon={true}
                 onClick={() => handleSave()}
               />
@@ -147,13 +159,21 @@ function IssueEdit() {
             </div>
           </div>
           <div data-opensettings={openSettings ?? false} className="sm:data-[opensettings=true]:pr-8 h-full">
-            {editIssue ? (
+            {editIssue ? (<div className="flex flex-col gap-2 h-full">
+              <div className="flex flex-row gap-2">
+                <Button primary={false} size="small" label="Bold" mobileOnlyIcon={true} icon={<TextBold size="16" className="foreground" />} onClick={() => insertInTextarea(" **", "** ")} />
+                <Button primary={false} size="small" label="Italic" mobileOnlyIcon={true} icon={<TextItalic size="16" className="foreground" />} onClick={() => insertInTextarea(" *", "* ")} />
+                <Button primary={false} size="small" label="Title" mobileOnlyIcon={true} icon={<TextScale size="16" className="foreground" />} onClick={() => insertInTextarea(" # ", "")} />
+                <Button primary={false} size="small" label="List" mobileOnlyIcon={true} icon={<List size="16" className="foreground" />} onClick={() => insertInTextarea("- ", "")} />
+                <Button primary={false} size="small" label="Checkbox" mobileOnlyIcon={true} icon={<Checkbox size="16" className="foreground" />} onClick={() => insertInTextarea("- [ ] ", "")} />
+              </div>
               <textarea
                 value={markdown}
+                ref={textAreaRef}
                 onChange={(e) => setMarkdown(e.target.value)}
                 className="h-full w-full shadow-inset dark:shadow-insetDarkmode rounded-sm p-4"
                 placeholder="Enter markdown..."
-              />
+              /></div>
             ) : (
               <div className="w-full min-h-100 h-fit p-5 shadow-inset dark:shadow-insetDarkmode rounded-sm">
                 <ReactMarkdown // https://reactmarkdown.com/
@@ -206,7 +226,7 @@ function IssueEdit() {
                     ),
                     img: ({ src, alt }) => (
                       // eslint-disable-next-line @next/next/no-img-element
-                      <img src={src} alt={alt} className="max-w-[100%] h-auto"/>
+                      <img src={src} alt={alt} className="max-w-[100%] h-auto" />
                     ),
                     p: ({ children }) => <p className="mb-4">{children}</p>,
                   }}
