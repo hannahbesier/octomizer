@@ -73,6 +73,7 @@ function MobileRow<T>({
     <div>
       <div className="flex flex-row gap-2 w-full items-center">
         <Button
+          aria-label={isExpanded ? "Collapse table row" :  "Expand table row"}
           primary={true}
           size="small"
           icon={

@@ -73,6 +73,8 @@ function IssueEdit() {
         <div data-opensettings={openSettings ?? false} className="flex flex-row sm:pt-2 gap-4 w-auto sm:data-[opensettings=true]:pr-8">
           {editIssue ? (
             <Textfield
+              label="issueTitle"
+              hiddenLabel={true}
               value={currentName}
               setValue={(value: string) => setName(value)}
             />
@@ -92,6 +94,7 @@ function IssueEdit() {
               />
             ) : (
               <Button
+                aria-label="Issue edit"
                 primary={true}
                 size="medium"
                 icon={<Edit size="20" className="text-foreground" />}
@@ -105,6 +108,7 @@ function IssueEdit() {
                 className="sm:hidden block sm:data-[open=true]:hidden sm:data-[open=false]:block"
               >
                 <Button
+                  aria-label="Open issue settings"
                   primary={true}
                   size="medium"
                   icon={
@@ -120,6 +124,7 @@ function IssueEdit() {
               </div>
             }
             <Button
+              aria-label="Close issue"
               primary={true}
               size="medium"
               onClick={() => {

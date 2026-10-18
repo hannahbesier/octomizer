@@ -50,6 +50,7 @@ export default function MainHeader() {
         primary={true}
         size="small"
         mobileOnlyIcon={true}
+        aria-label={sessionIdSelector === null ? "Log in" : "Your Profil"}
         label={
           sessionIdSelector === null ? "Log in" : (currentUser?.name ?? "")
         }

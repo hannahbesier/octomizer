@@ -42,6 +42,7 @@ function MyIssues() {
       label: "",
       render: (_, issue) => (
         <Button
+          aria-label="Open issue edit"
           primary={true}
           icon={<Launch size="16" className="text-foreground" />}
           onClick={() => {

@@ -21,6 +21,11 @@ export default function RootLayout({
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+          name="description"
+          content="Plan, organize, document your development projects. Octomizer is designed for small teams to enable project, feature and issue edit."
+          key="desc"
+        />
         <title>Octomizer</title>
         <link rel="icon" type="image/svg+xml" href="\icons\ibm-cloud--transit-gateway.svg"/>
       </head>

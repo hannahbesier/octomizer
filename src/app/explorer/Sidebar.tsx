@@ -30,6 +30,7 @@ function Feature({ featureId, setSideBar, mobile, }: { featureId: number; setSid
     <div className="flex flex-col">
       <div key={featureQuery.id} className="flex items-center">
         <Button
+          aria-label={isExpanded ? "Collapse" : "Expand"}
           primary={true}
           size="small"
           disabled={featureQuery.children.length === 0}
@@ -94,6 +95,7 @@ export default function Sidebar({
           <div className="w-full">{project ? project.name : <></>}</div>
           {sideBar ? (
             <Button
+              aria-label="Close project tree"
               primary={true}
               icon={
                 <OpenPanelFilledLeft size="24" className="text-foreground" />

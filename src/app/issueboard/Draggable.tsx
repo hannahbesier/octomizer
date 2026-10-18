@@ -27,11 +27,12 @@ export default function Draggable(props: {
     <div
       ref={ref}
       data-dragging={isDragging}
-      className="flex flex-col gap-1 w-full shadow-inset dark:shadow-insetDarkmode rounded-sm pr-4 pl-4 pt-2 pb-2"
+      className="flex flex-col gap-1 w-full shadow-inset dark:shadow-insetDarkmode rounded-sm pr-4 pl-4 pt-2 pb-2 cursor-grab"
     >
       <div className="flex flex-row w-full">
         <p className="w-full">{props.id}</p>
         <Button
+          aria-label="Open issue edit"
           onClick={() => {
             router.push(`/explorer/issueEdit?issueId=${props.issue.id}`);
           }}

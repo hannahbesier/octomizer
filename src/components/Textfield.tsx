@@ -1,16 +1,18 @@
 type TextfieldProps = React.InputHTMLAttributes<HTMLInputElement> & {
-  label?: string;
+  label: string;
   value: string;
   setValue: (value: string) => void,
   password?: boolean;
   valable?: boolean;
+  hiddenLabel?: boolean;
 };
-export default function Textfield({ label, value, setValue, valable = true, password, ...props }: TextfieldProps) {
+export default function Textfield({ label, value, setValue, valable = true, password, hiddenLabel = false, ...props }: TextfieldProps) {
   return (
     <div className="flex flex-col w-full">
-      <label className="text-sm sm:text-xs pl-1 w-full">{label}</label>
+      <label htmlFor={label} className="text-sm sm:text-xs pl-1 w-full">{!hiddenLabel ? label : ""}</label>
       <input
         key={label}
+        id={label}
         type={password ? "password" : "text"}
         className="shadow-inset dark:shadow-insetDarkmode pl-2 pr-2 rounded-sm w-full h-8 sm:h-fit"
         value={value}

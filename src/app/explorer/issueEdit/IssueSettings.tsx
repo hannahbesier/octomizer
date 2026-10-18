@@ -63,6 +63,7 @@ const IssueSettings = ({
             {mobile ? issue.name : "Issue settings"}{" "}
           </h1>
           <Button
+            aria-label="Close issue settings"
             primary={true}
             size="medium"
             icon={
@@ -193,6 +194,7 @@ const IssueSettings = ({
               <></>
             )}
             <Button
+              aria-label="Add tags"
               primary={false}
               size="medium"
               icon={

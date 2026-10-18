@@ -14,7 +14,7 @@ export default function Button({
   ...props
 }: ButtonProps) {
   const sizeBtn = {
-    small: "sm:pl-1 sm:pr-1 pl-2 pr-2 h-8 sm:h-fit",
+    small: "sm:pl-1 sm:pr-1 pl-2 pr-2 p-1 h-8 sm:h-fit",
     medium: "pl-2 pr-2 p-1 h-8 sm:h-fit",
     large: "pl-6 pr-6 p-2 text-lg",
   }[size];
@@ -22,7 +22,7 @@ export default function Button({
     primaryLabel:
       "bg-primary text-white hover:bg-[#5b73bb] dark:hover:bg-hover active:shadow-none border-none shadow dark:shadow-darkmode",
     secondary: "bg-transparent text-foreground hover:bg-hover active:shadow-none shadow dark:shadow-darkmode",
-    primaryIcon: "bg-transparent hover:bg-hover active:shadow-inset border-none",
+    primaryIcon: "bg-transparent hover:bg-hover active:shadow-inset active:dark:shadow-insetDarkmode border-none",
     iconLabel: "gap-2 items-center",
   };
   return (

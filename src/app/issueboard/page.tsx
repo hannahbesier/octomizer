@@ -6,14 +6,14 @@ import { move } from "@dnd-kit/helpers";
 import Button from "@/components/Button";
 import { Add } from "@carbon/icons-react";
 import { useGetBoardQuery, useUpdateIssueMutation } from "@/store/api/api";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Skeleton from "@/components/Skeleton";
 import checkAuth from "@/lib/checkAuth";
 import { BoardIssue } from "@/store/types";
 
 // https://dndkit.com/react/guides/multiple-sortable-lists/
 function IssueBoard() {
-  const { data: board } = useGetBoardQuery();
+  const { data: board, isLoading } = useGetBoardQuery();
   const [currentIssue, setCurrentIssue] = useState<BoardIssue>();
   const [issueBoard, setIssueboard] = useState<Record<string, string[]>>();
   const [updateIssue] = useUpdateIssueMutation({
@@ -32,7 +32,17 @@ function IssueBoard() {
     setIssueboard(newBoard);
   }, [board]);
 
-  if (!board) {
+  const issuesByName = useMemo(
+    () =>
+      new Map(
+        board?.flatMap((column) =>
+          column.issues.map((issue) => [issue.name, issue]),
+        ),
+      ),
+    [board],
+  );
+
+  if (isLoading || !board) {
     return <Skeleton />;
   }
   return (
@@ -73,11 +83,7 @@ function IssueBoard() {
                 <Draggable
                   id={id}
                   issue={
-                    board
-                      .find((col) =>
-                        col.issues.some((issue) => issue.name === id),
-                      )
-                      ?.issues.find((issue) => issue.name === id) ?? {
+                    issuesByName.get(id) ?? {
                       id: -1,
                       name: "",
                       assignedTo: { name: "" },
@@ -90,6 +96,7 @@ function IssueBoard() {
               ))}
               <div className="mb-4 mt-4 flex flex-row justify-center">
                 <Button
+                  aria-label="Add issue"
                   icon={<Add size="24" className="text-foreground" />}
                   size={"small"}
                   primary={true}

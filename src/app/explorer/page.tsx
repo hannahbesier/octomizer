@@ -56,6 +56,7 @@ function Explorer() {
       label: "",
       render: (_, issue) => (
         <Button
+          aria-label="Open issue"
           primary={true}
           icon={<Launch size="16" className="text-foreground" />}
           onClick={() => {
@@ -100,6 +101,7 @@ function Explorer() {
                 <div className="">
                   <Button
                     primary={false}
+                    aria-label="Open project tree"
                     icon={
                       <OpenPanelFilledLeft
                         size="24"

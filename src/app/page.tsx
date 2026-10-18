@@ -14,7 +14,7 @@ import { skipToken } from "@reduxjs/toolkit/query";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-
+import Image from "next/image";
 export default function Home() {
   const sessionIdSelector = useSelector(sessionId);
   const { data: currentUser } = useGetUserQuery(sessionIdSelector ?? skipToken);
@@ -27,7 +27,7 @@ export default function Home() {
   const router = useRouter();
   if (!currentUser) return (
     <div className="flex flex-col gap-10 sm:gap-15 h-full w-full items-center sm:justify-center ">
-      <div className="flex sm:flex-row sm:gap-10 flex-col text-2xl sm:text-4xl w-fit pb-0 p-10 sm:w-full justify-center">
+      <div className="flex sm:flex-row sm:gap-10 flex-col text-2xl sm:text-3xl w-fit pb-0 p-10 sm:w-full justify-center">
         <p>{"plan |"}</p>
         <p>{"organize |"}</p>
         <p>{"document |"}</p>
@@ -37,10 +37,48 @@ export default function Home() {
 
       <Button size="large" primary={true} label="Getting started" onClick={() => router.push("./login")} />
       <div className=" shadow dark:shadow-darkmode max-w-[60%] max-h-[60%]">
-        <img src=".\img\IssueEditWhite.png" alt="Issue Edit Example" className="hidden sm:block dark:sm:hidden h-full w-full" />
-        <img src=".\img\IssueEditMobile.png" alt="Issue Edit Example" className="block sm:hidden dark:hidden h-full w-full" />
-        <img src=".\img\IssueBoardBlackMobile.png" alt="Issue Edit Example" className="hidden dark:block dark:sm:hidden h-full w-full" />
-        <img src=".\img\IssueBoardBlack.png" alt="Issue Edit Example" className=" hidden dark:hidden dark:sm:block h-full w-full" />
+
+        <Image
+          src="/img/IssueEditWhite.png"
+          alt="Issue Edit Example"
+          width={1919}
+          height={1079}
+          fetchPriority="high"
+          loading="eager"
+          sizes="(min-width: 640px) 760px"
+          className="hidden sm:block dark:sm:hidden h-full w-full"
+        />
+        <Image
+          src="/img/IssueEditMobile.png"
+          alt="Issue Edit Example"
+          width={391}
+          height={852}
+          fetchPriority="high"
+          loading="eager"
+          sizes="(min-width: 640px) 760px"
+          className="block sm:hidden dark:hidden h-full w-full"
+        />
+        <Image
+          src="/img/IssueBoardBlackMobile.png"
+          alt="Issue Edit Example"
+          width={393}
+          height={850}
+          fetchPriority="high"
+          loading="eager"
+          sizes="(min-width: 640px) 760px"
+          className="hidden dark:block dark:sm:hidden h-full w-full"
+        />
+        <Image
+          src="/img/IssueBoardBlack.png"
+          alt="Issue Edit Example"
+          width={1919}
+          height={1079}
+          fetchPriority="high"
+          loading="eager"
+          sizes="(min-width: 640px) 760px"
+          className="hidden dark:hidden dark:sm:block h-full w-full"
+        />
+
       </div>
     </div>);
   if (issueIsLoading || userIsLoading) return <Skeleton />;

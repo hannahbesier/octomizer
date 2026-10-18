@@ -11,6 +11,7 @@ export default function Tag({tag, ...props}: TagProps) {
             >
               {tag}
               <Button
+                aria-label={`Remove ${tag}`}
                 primary={true}
                 size="small"
                 icon={<Close size="16" className="text-white" />}

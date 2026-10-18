@@ -53,7 +53,7 @@ export default function DropdownSearch({
           {...props}
         />
         <button
-          className="shadow-inset dark:shadow-insetDarkmode rounded-r-sm sm:fit w-8 justify-center flex items-center"
+          aria-label={`Open ${label} options`} className="shadow-inset dark:shadow-insetDarkmode rounded-r-sm sm:fit w-8 justify-center flex items-center"
           onClick={() => ( dropdown ? setDropdown(false) : setDropdown(true))}
         >
           <ChevronDown size="24" />
@@ -66,7 +66,7 @@ export default function DropdownSearch({
         >
           {options.map((option) => (<div key={option} className="border-b-1 border-secondary last:border-b-0">
             <button
-              className=" flex w-full pl-2 pr-2 p-1 hover:bg-secondary cursor-pointer active:shadow-inset rounded-sm"
+              aria-label={`Select ${option}`} className=" flex w-full pl-2 pr-2 p-1 hover:bg-secondary cursor-pointer active:shadow-inset rounded-sm"
               
               onClick={() => handleOnClickOption(option)}
             >
@@ -75,11 +75,11 @@ export default function DropdownSearch({
           ))}
         </div>
       )}
-      <label className="text-xs pl-1 text-red-400">
+      <div className="text-xs pl-1 text-red-400">
         {options.find((option) => option === currentValue)
           ? ""
           : "Select an accepted value"}
-      </label>
+      </div>
     </div>
   );
 }

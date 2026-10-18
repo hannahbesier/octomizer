@@ -37,7 +37,7 @@ export default function Header() {
       <div onClick={() => setMenuOpen(false)} className="fixed top-10 left-0 rigth-0 bottom-0 w-200 z-4 bg-[#00000030]">
         <nav onClick={(e) => e.stopPropagation()} className="fixed top-14 left-4 bg-secondary w-2/3 bottom-4 z-5 shadow dark:shadow-darkmode rounded-sm">
           <div className="flex flex-row h-10 pl-2 gap-2 items-center justify-start">
-            <Button primary={true} icon={<Menu size="20" className="text-foreground" />} onClick={() => setMenuOpen(false)} />
+            <Button aria-label="Menu" primary={true} icon={<Menu size="20" className="text-foreground" />} onClick={() => setMenuOpen(false)} />
             <div>Menu</div>
           </div>
           <div className="flex flex-col pt-0 p-2">
@@ -58,7 +58,7 @@ export default function Header() {
         </nav></div> : <></>}
       <nav className="flex ml-2 mr-2 sm:ml-10 sm:mr-10 rounded-sm pl-2 sm:pl-6 sm:pr-6 h-10 shadow-md dark:shadow-darkShadow bg-secondary justify-start items-center">
 
-        {!menuOpen ? <div className="block sm:hidden flex flex-row gap-1 items-center"><Button primary={true} icon={<Menu size="20" className="text-foreground" />} onClick={() => setMenuOpen(true)} />{page()}</div> : <></>}
+        {!menuOpen ? <div className="block sm:hidden flex flex-row gap-1 items-center"><Button aria-label="Menu" primary={true} icon={<Menu size="20" className="text-foreground" />} onClick={() => setMenuOpen(true)} />{page()}</div> : <></>}
         {!menuOpen ? navItem.map((item) => (
           <Link
             key={item.href}
