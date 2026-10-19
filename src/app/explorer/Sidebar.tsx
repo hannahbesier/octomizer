@@ -88,7 +88,7 @@ export default function Sidebar({
       className="
       data-[overlay=true]:absolute data-[overlay=true]:right-5 data-[overlay=true]:top-25 data-[overlay=true]:left-5 data-[overlay=true]:bottom-5 data-[overlay=true]:z-2 data-[overlay=true]:block 
       md:block hidden md:data-[open=false]:hidden md:data-[open=true]:block
-      md:w-100 shadow dark:shadow-darkmode bg-secondary rounded-sm p-2  fixed left-10 bottom-5 top-25"
+      md:w-100 shadow dark:shadow-darkmode bg-secondary rounded-sm p-2  fixed left-10 bottom-15 top-25"
     >
       <div className="flex flex-col pl-2 pr-2 p-1 gap-2">
         <div className="flex flex-row items-center w-full">

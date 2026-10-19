@@ -31,7 +31,7 @@ export default function Button({
       ${!primary ? styleBtn.secondary : ""}
       ${primary && !label ? styleBtn.primaryIcon : ""}
       ${icon && label ? styleBtn.iconLabel : ""}
-      rounded-md ${sizeBtn} flex cursor-pointer items-center w-fit`}
+      rounded-md ${sizeBtn} flex cursor-pointer items-center w-fit h-fit`}
       {...props}
     >
       {icon ?? <></>}
