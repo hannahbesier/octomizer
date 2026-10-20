@@ -68,7 +68,7 @@ function IssueEdit() {
 
   if (issueIsLoading) return <Skeleton />;
   return (
-    <div className="flex flex-row sm:pl-10 sm:pr-10 pb-0 p-6">
+    <div className="flex flex-row sm:pl-10 sm:pr-10 pb-0 p-6 relative">
       <div data-opensettings={openSettings} className="sm:data-[opensettings=true]:mr-100 mr-0 flex flex-col w-full">
         <div data-opensettings={openSettings ?? false} className="flex flex-row sm:pt-2 gap-4 w-auto sm:data-[opensettings=true]:pr-8">
           {editIssue ? (

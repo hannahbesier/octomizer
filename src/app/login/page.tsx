@@ -95,6 +95,11 @@ export default function Login() {
               setValue={(value) => setPassword(value)}
               valable={!loginError}
               password={true}
+              onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
+                if (e.key === "Enter"){
+                  handleLogin();
+                }
+              }}
             />
             <div className="flex flex-row gap-4 items-center">
             <Button

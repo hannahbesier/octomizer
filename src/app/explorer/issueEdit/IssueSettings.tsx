@@ -52,7 +52,7 @@ const IssueSettings = ({
     <aside
       data-overlay={mobile && openSettings}
       data-open={openSettings}
-      className="data-[overlay=true]:absolute data-[overlay=true]:right-5 data-[overlay=true]:top-25 data-[overlay=true]:left-5 data-[overlay=true]:bottom-5 data-[overlay=true]:z-2 data-[overlay=true]:block 
+      className="data-[overlay=true]:absolute data-[overlay=true]:right-5 data-[overlay=true]:top-6 data-[overlay=true]:left-5 data-[overlay=true]:bottom-0 data-[overlay=true]:z-2 data-[overlay=true]:block 
        md:block hidden md:data-[open=false]:hidden md:data-[open=true]:block
       md:w-100 shadow dark:shadow-darkmode bg-secondary rounded-sm pt-2 p-4 fixed right-10 bottom-15 top-25"
       {...props}

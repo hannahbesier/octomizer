@@ -82,7 +82,7 @@ function Explorer() {
   ];
   if (projectIsLoading) return <Skeleton />;
   return (
-    <div className="flex flex-col gap-4 p-10 h-full">
+    <div className="flex flex-col p-10 h-full relative flex-1">
       <div data-sidebar={sideBar} className="flex flex-row gap-4 h-full sm:data-[sidebar=true]:ml-105 ml-0">
         {sideBar ? (
           <Sidebar
