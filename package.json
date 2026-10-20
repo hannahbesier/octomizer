@@ -1,6 +1,7 @@
 {
   "name": "octomizer",
   "version": "0.1.0",
+  "author": "Hannah Besier",
   "private": true,
   "scripts": {
     "dev": "next dev",

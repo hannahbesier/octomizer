@@ -1,8 +1,12 @@
-# README
+# Octomizer
+
+Plan, organize, and document development projects. This is a web app for project management designed specifically for small development teams. You can view and edit tasks and organize them into projects and features.
+
+Currently in development.
+
+Try it here: [https://octomizer.vercel.app](https://octomizer.vercel.app)
 
 ## The project
-
-This is a web-app for project management that is designed for use by small development teams.
 
 - Fully **responsive** for web and mobile
 
@@ -10,7 +14,7 @@ This is a web-app for project management that is designed for use by small devel
 
 - **User authentication**: (login, logout via sessions saved in the database, use cookies to remember login with session ID)
 
-- Home screen **dashboard**: view personal related current issues, team members and to-do issues (more in in planning)
+- Home screen **dashboard**: view personal related current issues, team members and to-do issues (more in planning)
 
 - Team **issue board**: Drag and drop issues to manage their state
 
@@ -29,9 +33,30 @@ This is a web-app for project management that is designed for use by small devel
   <img src="public\img\IssueBoardBlackMobile.png" width="15%" />
 </p>
 
+## The technology
+
+- [React.js](https://react.dev/) - nested component rendering using props - local state management via hooks - conditional rendering - event handling - markup with JSX
+
+- [Next.js](https://nextjs.org/docs) - Routing - Route handlers - server side components
+
+- [TypeScript](https://www.typescriptlang.org/) - types for less bugs
+
+- [Redux.js](https://redux.js.org/) + RTK query - state management - data fetching via API service and caching
+
+- [Storybook](https://storybook.js.org/) - UI component testing - styleguide documentation
+
+- [Prisma](https://www.prisma.io/postgres) - PostgreSQL access
+
+- [Tailwind.css](https://tailwindcss.com/) - CSS styling - theming
+
+- [dnd kit](https://dndkit.com/) - drag and drop toolkit
+
+- [js cookies](https://dev.to/codeparrot/react-cookies-a-complete-guide-to-managing-cookies-in-react-applications-3cd3) - Cookie management -> change to next js cookies
+
+- [Carbon Design System Icons](https://v10.carbondesignsystem.com/guidelines/icons/library/) - IMB icon set
+
 ## Getting started
 
-## Install
 If you haven't installed Git yet, you can do so [here](https://git-scm.com/install/windows)
 . Open a terminal and check with 
 
@@ -91,29 +116,6 @@ The prisma studio app will open automatically in your browser. If not:
 
 [http://localhost:51212](http://localhost:51212/)
 
-
-## The technology
-
-- [React.js](https://react.dev/) - nested component rendering using props - local state management via hooks - conditional rendering - event handling - markup with JSX
-
-- [Next.js]((https://nextjs.org/docs)) - Routing - Route handlers - server side components
-
-- [TypeScript](https://www.typescriptlang.org/) - types for less bugs
-
-- [Redux.js](https://redux.js.org/) + RTK query - state management - data fetching via API service and caching
-
-- [Storybook](https://storybook.js.org/) - UI component testing - styleguide documentation
-
-- [Prisma](https://www.prisma.io/postgres) - PostgreSQL access
-
-- [Tailwind.css](https://tailwindcss.com/) - CSS styling - theming
-
-- [dnd kit](https://dndkit.com/) - drag and drop toolkit
-
-- [js cookies](https://dev.to/codeparrot/react-cookies-a-complete-guide-to-managing-cookies-in-react-applications-3cd3) - Cookie management -> change to next js cookies
-
-- [Carbon Design System Icons](https://v10.carbondesignsystem.com/guidelines/icons/library/) - IMB icon set
-
 ## The to-dos
 
 - Add and delete projects, features, issues
@@ -123,8 +125,6 @@ The prisma studio app will open automatically in your browser. If not:
 - Pagination
 
 - [Global Error handling / Error messages](https://nextjs.org/docs/app/api-reference/file-conventions/error#global-error)
-
-- 404 
 
 - Lazy loading check
 
