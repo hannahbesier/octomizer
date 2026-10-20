@@ -88,7 +88,7 @@ export default function Home() {
         {"Welcome " + currentUser.name}
       </h1>
       <div className="pl-10 pr-10 sm:pl-20 sm:pr-20 md:pl-40 md:pr-40 lg:pl-60 lg:pr-60 xl:pl-100 xl:pr-100 flex flex-col gap-5 sm:grid sm:grid-cols-2 sm:gap-10">
-        <Card title={"Your current issues"}>
+        <Card title={"My current issues"}>
           <div className="flex flex-wrap justify-center gap-2">
             {issues
               .filter((issue) => issue.state.name === "busy")
@@ -107,7 +107,7 @@ export default function Home() {
               ))}
           </div>
         </Card>
-        <Card title={"Your team"}>
+        <Card title={"My team"}>
           <div className="flex flex-wrap gap-2">
             {users
               ?.filter((user) => user.id !== currentUser?.id)
@@ -116,7 +116,7 @@ export default function Home() {
               ))}
           </div>
         </Card>
-        <Card title={"Your to-do issue"}>
+        <Card title={"My to-do issues"}>
           <div className="flex flex-wrap gap-2">
             {issues
               .filter((issue) => issue.state.name === "toDo")

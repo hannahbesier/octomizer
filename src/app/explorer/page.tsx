@@ -104,7 +104,7 @@ function Explorer() {
                     aria-label="Open project tree"
                     icon={
                       <OpenPanelFilledLeft
-                        size="24"
+                        size="20"
                         className="text-foreground"
                       />
                     }
@@ -138,7 +138,7 @@ function Explorer() {
               size="small"
               label="New"
               mobileOnlyIcon={true}
-              icon={<Add size="20" className="text-foreground" />}
+              icon={<Add size="16" className="text-foreground" />}
             />{" "}
             Search:
             <DropdownSearch
