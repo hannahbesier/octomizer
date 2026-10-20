@@ -66,11 +66,11 @@ export default function Login() {
     <div className="flex h-1/3 items-center justify-center ">
       <div className="flex flex-col gap-8 w-100 items-center">
         {sessionIdSelector ? (
-          <div className="flex flex-col gap-8 w-100 items-center">
+          <div className="flex flex-col pt-30 gap-8 items-center">
             {sessionIdSelector === null ? (
               <></>
             ) : (
-              <h1 className="text-3xl">
+              <h1 className="text-xl sm:text-3xl">
                 {"Welcome back, " + currentUser?.name}
               </h1>
             )}

@@ -52,7 +52,7 @@ export const api = apiService.injectEndpoints({
       providesTags: () => ["Board"],
     }),
     getIsAuth: builder.query<boolean, string>({
-      query: (sessionId: string) => `session/auth?sessionId=${sessionId}`,
+      query: (sessionId: string) => `session?sessionId=${sessionId}`,
     }),
     updateIssue: builder.mutation<Issue, UpdateIssueRequest>({
       query: ({ id, ...patch }) => ({
@@ -69,7 +69,7 @@ export const api = apiService.injectEndpoints({
     }),
     updateSession: builder.mutation({
       query: ({ username, ...patch }) => ({
-        url: `session/${encodeURIComponent(username)}`,
+        url: `session/user/${encodeURIComponent(username)}`,
         method: "PATCH",
         body: patch,
       }),
@@ -77,7 +77,7 @@ export const api = apiService.injectEndpoints({
     }),
     deleteSession: builder.mutation({
       query: ({ sessionId }) => ({
-        url: `session/delete/${encodeURIComponent(sessionId)}`,
+        url: `session/${encodeURIComponent(sessionId)}`,
         method: "DELETE",
       }),
       invalidatesTags: () => ["User"],
