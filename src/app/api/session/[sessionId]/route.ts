@@ -5,11 +5,16 @@ export async function DELETE(
   { params }: { params: Promise<{ sessionId: string }> },
 ) {
   const { sessionId } = await params;
+  if (!sessionId) {
+    return NextResponse.json({ error: "sessionId is required" }, { status: 400 });
+  }
   const session = await prisma.session.delete({
     where: { id: sessionId },
   });
-  if (session) return NextResponse.json(true);
-  return NextResponse.json({
-    error: "Session failed to be deleted",
-  });
+  if (!session) {
+    return NextResponse.json({
+      error: "Session not found"
+    }, { status: 404 });
+  }
+  return NextResponse.json(true, { status: 200 });
 }

@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { error } from "console";
 import { NextResponse } from "next/server";
 
 export async function GET() {
@@ -18,5 +19,8 @@ export async function GET() {
       },
     },
   });
-  return NextResponse.json(board);
+  if (!board) {
+    return NextResponse.json({ error: "board not found" }, { status: 404 });
+  }
+  return NextResponse.json(board, { status: 200 });
 }

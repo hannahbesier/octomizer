@@ -14,6 +14,7 @@ export async function GET(request: NextRequest) {
   });
 
   if (isAuth) {
-    return NextResponse.json({ isAuth: true });
-  } else return NextResponse.json({ isAuth: false });
+    return NextResponse.json({ isAuth: true }, { status: 200 });
+  }
+  return NextResponse.json({ isAuth: false });
 }

@@ -31,5 +31,8 @@ export async function GET(request: NextRequest) {
       },
     },
   });
-  return NextResponse.json(feature);
+  if (!feature) {
+    return NextResponse.json({ error: "feature not found" }, { status: 404 });
+  }
+  return NextResponse.json(feature, { status: 200 });
 }

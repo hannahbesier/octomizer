@@ -21,6 +21,8 @@ export async function GET(request: NextRequest) {
     select: { id: true, name: true },
   });
 
-  if (user) return NextResponse.json(user);
-  return NextResponse.json({ error: "no user" }, { status: 500 });
+  if (!user) {
+    return NextResponse.json({ error: "user not found" }, { status: 404 });
+  }
+  return NextResponse.json(user, { status: 200 });
 }

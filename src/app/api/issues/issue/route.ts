@@ -29,6 +29,8 @@ export async function GET(request: NextRequest) {
       },
     },
   });
-
-  return NextResponse.json(issue);
+  if (!issue) {
+    return NextResponse.json({ error: "issue not found" }, { status: 404 })
+  }
+  return NextResponse.json(issue, { status: 200 });
 }

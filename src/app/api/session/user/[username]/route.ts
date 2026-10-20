@@ -36,7 +36,7 @@ export async function PATCH(
       },
     });
 
-    return NextResponse.json({ id: session.id });
+    return NextResponse.json({ id: session.id, expiresAt: session.expiresAt }, { status: 200 });
   } catch {
     return NextResponse.json({ error: "Failed to login" }, { status: 500 });
   }

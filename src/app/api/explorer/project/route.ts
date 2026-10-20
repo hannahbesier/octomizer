@@ -35,5 +35,8 @@ export async function GET(request: NextRequest) {
     },
   });
 
-  return NextResponse.json(project);
+  if (!project) {
+    return NextResponse.json({ error: "project not found" }, { status: 404 });
+  }
+  return NextResponse.json(project, { status: 200 });
 }

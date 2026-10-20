@@ -51,7 +51,7 @@ export async function PATCH(
         }),
       },
     });
-    return NextResponse.json(issue);
+    return NextResponse.json(issue, {status: 200});
   } catch {
     return NextResponse.json(
       { error: "Failed to update issue" },
