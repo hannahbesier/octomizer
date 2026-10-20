@@ -29,7 +29,6 @@ function Explorer() {
   const dispatch = useDispatch();
   const contentSelector = useSelector(explorerContent);
   const { data: feature } = useGetFeatureQuery(contentSelector);
-  // const [mobile, setMobile] = useState(useMobile());
   const mobile = useMobile();
   const [sideBar, setSideBar] = useState(mobile ? false : true);
   const router = useRouter();
@@ -72,7 +71,7 @@ function Explorer() {
       label: "Feature name",
       render: (_, feature) => (
         <button
-          className="h-full w-full text-primaryLight flex flex-start items-center cursor-pointer whitespace-nowrap"
+          className="h-8 w-full text-primaryLight flex flex-start items-center cursor-pointer whitespace-nowrap"
           onClick={() => dispatch(setExplorerContent(feature.id))}
         >
           {feature.name}
