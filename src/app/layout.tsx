@@ -39,7 +39,7 @@ export default function RootLayout({
           <div className="flex flex-1 min-h-0">
             <main className="flex-1 overflow-y-auto min-h-0"><div className="flex flex-col pb-10 min-h-full">{children}</div></main>
           </div>
-          <footer className="flex flex-row gap-1 h-10 w-full bg-secondary items-center justify-center text-foreground shadow dark:shadow-darkmode"><p>Created by Hannah Besier :  </p><a className="text-primaryLight underline" href="https://github.com/hannahbesier/octomizer">https://github.com/hannahbesier/octomizer</a></footer>
+          <footer className="flex sm:flex-row sm:gap-1 pb-2 pt-2 flex-col w-full bg-secondary items-center justify-center text-foreground shadow dark:shadow-darkmode"><p>| Created by Hannah Besier |  </p><a className="text-primaryLight underline" href="https://github.com/hannahbesier/octomizer">https://github.com/hannahbesier/octomizer</a></footer>
         </Provider>
       </body>
     </html>

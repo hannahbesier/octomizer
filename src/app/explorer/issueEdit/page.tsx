@@ -68,8 +68,8 @@ function IssueEdit() {
 
   if (issueIsLoading) return <Skeleton />;
   return (
-    <div className="flex flex-row min-h-full sm:pl-10 sm:pr-10 pb-0 p-6">
-      <div data-opensettings={openSettings} className="sm:data-[opensettings=true]:mr-100 mr-0 flex flex-col w-full min-h-full">
+    <div className="flex flex-row sm:pl-10 sm:pr-10 pb-0 p-6">
+      <div data-opensettings={openSettings} className="sm:data-[opensettings=true]:mr-100 mr-0 flex flex-col w-full">
         <div data-opensettings={openSettings ?? false} className="flex flex-row sm:pt-2 gap-4 w-auto sm:data-[opensettings=true]:pr-8">
           {editIssue ? (
             <Textfield
@@ -136,7 +136,7 @@ function IssueEdit() {
             />
           </div>
         </div>
-        <div className="flex flex-col gap-4 mt-4 min-h-full">
+        <div className="flex flex-col gap-4 mt-4">
           <div className="flex flex-col sm:flex-row gap-4">
             <div className="flex items-center gap-4">
               <p>assigned to:</p>
@@ -163,8 +163,8 @@ function IssueEdit() {
               )}
             </div>
           </div>
-          <div data-opensettings={openSettings ?? false} className="sm:data-[opensettings=true]:pr-8 min-h-full">
-            {editIssue ? (<div className="flex-1 flex flex-col gap-2 min-h-full">
+          <div data-opensettings={openSettings ?? false} className="sm:data-[opensettings=true]:pr-8">
+            {editIssue ? (<div className="flex-1 flex flex-col gap-2">
               <div className="flex flex-row gap-2">
                 <Button primary={false} size="small" label="Bold" mobileOnlyIcon={true} icon={<TextBold size="16" className="foreground" />} onClick={() => insertInTextarea(" **", "** ")} />
                 <Button primary={false} size="small" label="Italic" mobileOnlyIcon={true} icon={<TextItalic size="16" className="foreground" />} onClick={() => insertInTextarea(" *", "* ")} />
@@ -176,7 +176,7 @@ function IssueEdit() {
                 value={markdown}
                 ref={textAreaRef}
                 onChange={(e) => setMarkdown(e.target.value)}
-                className="h-full w-full shadow-inset dark:shadow-insetDarkmode rounded-sm p-4"
+                className="h-120 md:h-250 w-full shadow-inset dark:shadow-insetDarkmode rounded-sm p-4"
                 placeholder="Enter markdown..."
               /></div>
             ) : (

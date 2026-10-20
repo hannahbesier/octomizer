@@ -28,7 +28,7 @@ export default function MainHeader() {
     <div className="flex pl-4 pr-4 sm:pl-10 sm:pr-10 p-2 w-full items-center bg-primary gap-4">
       <div className="flex flex-row gap-2 grow items-center">
         <IbmCloudTransitGateway size="20" className="text-white" />
-        <h1 className="text-white">Ocotomizer</h1>
+        <h1 className="text-white">Octomizer</h1>
       </div>
       <div className="flex flex-row gap-2 items-center">
         <Asleep size="20" className="text-white" />
