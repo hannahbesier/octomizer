@@ -16,21 +16,19 @@ const worldSlice = createSlice({
     setExplorerContent: (state, action: PayloadAction<number>) => {
       state.explorerContent = action.payload;
     },
-    setSessionId: (state, action: PayloadAction<string | null>) => {
-      state.sessionId = action.payload;
-      state.isAuth = true;
+    setIsAuth: (state, action: PayloadAction<boolean>) => {
+      state.isAuth = action.payload;
     },
   },
 });
 
-export const { addCurrentExpanded, setExplorerContent, setSessionId } =
+export const { addCurrentExpanded, setExplorerContent, setIsAuth } =
   worldSlice.actions;
 
 export const currentExpanded = (state: RootState) =>
   state.worldSlice.currentExpanded;
 export const explorerContent = (state: RootState) =>
   state.worldSlice.explorerContent;
-export const sessionId = (state: RootState) => state.worldSlice.sessionId;
 export const isAuth = (state: RootState) => state.worldSlice.isAuth;
 export const store = configureStore({
   reducer: {

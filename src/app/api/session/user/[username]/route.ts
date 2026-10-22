@@ -1,10 +1,18 @@
+import getSessionCookie from "@/lib/getSessionCookie";
 import { prisma } from "@/lib/prisma";
+import validateOrigin from "@/lib/validateOrigin";
+import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
 export async function PATCH(
   request: Request,
   { params }: { params: Promise<{ username: string }> },
 ) {
+  const originError = validateOrigin(request);
+
+  if (originError) {
+    return originError;
+  }
   const { username } = await params;
 
   const body = await request.json();
@@ -34,6 +42,16 @@ export async function PATCH(
         expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30),
         userId: user?.id,
       },
+    });
+
+    const cookieStore = await cookies();
+
+    cookieStore.set("sessionId", session.id, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      path: "/",
+      maxAge: 60 * 60 * 24 * 30,
     });
 
     return NextResponse.json({ id: session.id, expiresAt: session.expiresAt }, { status: 200 });

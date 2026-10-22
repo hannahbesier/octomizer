@@ -1,7 +1,6 @@
 export type State = {
   currentExpanded: number[];
   explorerContent: number;
-  sessionId: string | null;
   isAuth: boolean;
 };
 export type BoardIssue = {

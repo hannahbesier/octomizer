@@ -7,19 +7,12 @@ import {
   useGetUserQuery,
   useGetUsersQuery,
 } from "@/store/api/api";
-import { sessionId } from "@/store/store";
 import { IssueTable } from "@/store/types";
 import { Launch } from "@carbon/icons-react";
-import { skipToken } from "@reduxjs/toolkit/query";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
 import Image from "next/image";
 export default function Home() {
-  const sessionIdSelector = useSelector(sessionId);
-  const { data: currentUser } = useGetUserQuery(sessionIdSelector ?? skipToken);
-  useEffect(() => { }, [sessionIdSelector]);
-
+  const { data: currentUser } = useGetUserQuery();
   const { data: issues, isLoading: issueIsLoading } = useGetIssuesQuery<
     Record<string, IssueTable[]>
   >(currentUser?.id ?? 0);

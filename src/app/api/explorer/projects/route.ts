@@ -1,7 +1,16 @@
+import getSessionCookie from "@/lib/getSessionCookie";
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
 export async function GET() {
+  const sessionId = await getSessionCookie();
+
+  if (!sessionId) {
+    return NextResponse.json(
+      { message: "Unauthorized" },
+      { status: 401 }
+    );
+  }
   const projects = await prisma.project.findMany();
   if (!projects) {
     return NextResponse.json({ error: "projects not found" }, { status: 404 });

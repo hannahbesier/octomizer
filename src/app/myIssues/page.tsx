@@ -1,5 +1,4 @@
 "use client";
-import { useEffect } from "react";
 import Table, { Column } from "../../components/Table";
 import { useGetIssuesQuery, useGetUserQuery } from "@/store/api/api";
 import { IssueTable } from "@/store/types";
@@ -7,16 +6,11 @@ import { useRouter } from "next/navigation";
 import Button from "@/components/Button";
 import { Launch } from "@carbon/icons-react";
 import Skeleton from "@/components/Skeleton";
-import { useSelector } from "react-redux";
-import { sessionId } from "@/store/store";
-import { skipToken } from "@reduxjs/toolkit/query";
 import useMobile from "../../lib/useMobile";
 import checkAuth from "@/lib/checkAuth";
 
 function MyIssues() {
-  const sessionIdSelector = useSelector(sessionId);
-  const { data: currentUser } = useGetUserQuery(sessionIdSelector ?? skipToken);
-  useEffect(() => {}, [sessionIdSelector]);
+  const { data: currentUser } = useGetUserQuery();
   const { data: issues, isLoading: issueIsLoading } = useGetIssuesQuery<
     Record<string, IssueTable[]>
   >(currentUser?.id ?? 0);

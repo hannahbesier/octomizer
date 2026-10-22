@@ -1,10 +1,25 @@
+import getSessionCookie from "@/lib/getSessionCookie";
 import { prisma } from "@/lib/prisma";
+import validateOrigin from "@/lib/validateOrigin";
 import { NextResponse } from "next/server";
 
 export async function PATCH(
   request: Request,
   { params }: { params: Promise<{ id: string }> },
 ) {
+  const originError = validateOrigin(request);
+
+  if (originError) {
+    return originError;
+  }
+  const sessionId = await getSessionCookie();
+
+  if (!sessionId) {
+    return NextResponse.json(
+      { message: "Unauthorized" },
+      { status: 401 }
+    );
+  }
   try {
     const { id } = await params;
     const body = await request.json();
@@ -51,7 +66,7 @@ export async function PATCH(
         }),
       },
     });
-    return NextResponse.json(issue, {status: 200});
+    return NextResponse.json(issue, { status: 200 });
   } catch {
     return NextResponse.json(
       { error: "Failed to update issue" },

@@ -33,8 +33,8 @@ export const api = apiService.injectEndpoints({
     getUsers: builder.query<User[], void>({
       query: () => "users",
     }),
-    getUser: builder.query<User, string>({
-      query: (id: string) => `users/user?sessionId=${id}`,
+    getUser: builder.query<User, void>({
+      query: () => `users/user`,
       providesTags: () => ["User"],
     }),
     getProjects: builder.query<Project[], void>({
@@ -51,8 +51,8 @@ export const api = apiService.injectEndpoints({
       query: () => "states/board",
       providesTags: () => ["Board"],
     }),
-    getIsAuth: builder.query<boolean, string>({
-      query: (sessionId: string) => `session?sessionId=${sessionId}`,
+    getIsAuth: builder.query<boolean, void>({
+      query: () => `session/auth`,
     }),
     updateIssue: builder.mutation<Issue, UpdateIssueRequest>({
       query: ({ id, ...patch }) => ({
@@ -76,8 +76,8 @@ export const api = apiService.injectEndpoints({
       invalidatesTags: () => ["User"],
     }),
     deleteSession: builder.mutation({
-      query: ({ sessionId }) => ({
-        url: `session/${encodeURIComponent(sessionId)}`,
+      query: () => ({
+        url: `session/auth`,
         method: "DELETE",
       }),
       invalidatesTags: () => ["User"],

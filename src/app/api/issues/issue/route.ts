@@ -1,7 +1,16 @@
+import getSessionCookie from "@/lib/getSessionCookie";
 import { prisma } from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
+  const sessionId = await getSessionCookie();
+
+  if (!sessionId) {
+    return NextResponse.json(
+      { message: "Unauthorized" },
+      { status: 401 }
+    );
+  }
   const issueId = request.nextUrl.searchParams.get("issueId");
 
   if (!issueId) {

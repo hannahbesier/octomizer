@@ -1,10 +1,17 @@
+import getSessionCookie from "@/lib/getSessionCookie";
 import { prisma } from "@/lib/prisma";
+import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
-  const sessionId = request.nextUrl.searchParams.get("sessionId");
+
+  const sessionId = await getSessionCookie();
+
   if (!sessionId) {
-    return NextResponse.json({ error: "userId is required" }, { status: 400 });
+    return NextResponse.json(
+      { message: "Unauthorized" },
+      { status: 401 }
+    );
   }
   const userId = await prisma.session.findUnique({
     where: { id: sessionId },

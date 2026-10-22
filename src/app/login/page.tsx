@@ -5,25 +5,23 @@ import {
   useUpdateSessionMutation,
   useDeleteSessionMutation,
   useGetUserQuery,
+  api,
 } from "@/store/api/api";
-import { useEffect, useState } from "react";
-import Cookies from "js-cookie";
-import { useDispatch, useSelector } from "react-redux";
-import { sessionId, setSessionId } from "@/store/store";
-import { skipToken } from "@reduxjs/toolkit/query";
-import { redirect } from "next/navigation";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setIsAuth } from "@/store/store";
+import { redirect, useRouter } from "next/navigation";
 import LoadingSpin from "@/components/LoadingSpin";
 
 export default function Login() {
-  const [updateSession, {isLoading}] = useUpdateSessionMutation();
+  const [updateSession, { isLoading }] = useUpdateSessionMutation();
   const [deleteSession] = useDeleteSessionMutation();
-  const sessionIdSelector = useSelector(sessionId);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState(false);
   const dispatch = useDispatch();
-  const { data: currentUser } = useGetUserQuery(sessionIdSelector ?? skipToken);
-  useEffect(() => {}, [sessionIdSelector]);
+  const router = useRouter();
+  const { data: currentUser } = useGetUserQuery();
   async function handleLogin() {
     try {
       setLoginError(false);
@@ -32,12 +30,9 @@ export default function Login() {
         password: password,
       }).unwrap();
       if (result) {
-        Cookies.set("sessionId", result.id, {
-          expires: 7,
-          secure: true,
-          sameSite: "strict",
-        });
-        dispatch(setSessionId(result.id));
+
+        dispatch(api.util.invalidateTags(["User"]));
+        dispatch(setIsAuth(true));
         setUsername("");
         setPassword("");
         setTimeout(() => {
@@ -49,15 +44,11 @@ export default function Login() {
     }
   }
   async function handleLogout() {
-    const sessionId = Cookies.get("sessionId");
-
     try {
-      if (sessionId) {
-        await deleteSession({ sessionId }).unwrap();
-      }
-
-      Cookies.remove("sessionId");
-      dispatch(setSessionId(null));
+      await deleteSession({}).unwrap();
+      dispatch(setIsAuth(false));
+      dispatch(api.util.resetApiState());
+      router.refresh();
     } catch (error) {
       console.log(error);
     }
@@ -65,9 +56,9 @@ export default function Login() {
   return (
     <div className="flex h-1/3 items-center justify-center ">
       <div className="flex flex-col gap-8 w-100 items-center">
-        {sessionIdSelector ? (
+        {currentUser ? (
           <div className="flex flex-col pt-30 gap-8 items-center">
-            {sessionIdSelector === null ? (
+            {currentUser === null ? (
               <></>
             ) : (
               <h1 className="text-xl sm:text-3xl">
@@ -96,17 +87,17 @@ export default function Login() {
               valable={!loginError}
               password={true}
               onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
-                if (e.key === "Enter"){
+                if (e.key === "Enter") {
                   handleLogin();
                 }
               }}
             />
             <div className="flex flex-row gap-4 items-center">
-            <Button
-              label="Login"
-              primary={true}
-              onClick={() => handleLogin()}
-            />{isLoading ? <LoadingSpin/> : <></>}</div>
+              <Button
+                label="Login"
+                primary={true}
+                onClick={() => handleLogin()}
+              />{isLoading ? <LoadingSpin /> : <></>}</div>
           </div>
         )}
       </div>

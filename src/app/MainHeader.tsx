@@ -4,19 +4,15 @@ import {
   IbmCloudTransitGateway,
   UserAvatar,
 } from "@carbon/icons-react";
-import { useSelector } from "react-redux";
-import { sessionId } from "@/store/store";
 import Button from "@/components/Button";
 import { useRouter } from "next/navigation";
 import { useGetUserQuery } from "@/store/api/api";
-import { skipToken } from "@reduxjs/toolkit/query";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
+
 export default function MainHeader() {
-  const sessionIdSelector = useSelector(sessionId);
-  const { data: currentUser } = useGetUserQuery(sessionIdSelector ?? skipToken);
+  const { data: currentUser } = useGetUserQuery();
   const [dark, setDark] = useState(false);
-  useEffect(() => {}, [sessionIdSelector]);
   useEffect(() => {
     const isDark = Cookies.get("theme") === "true";
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -50,9 +46,9 @@ export default function MainHeader() {
         primary={true}
         size="small"
         mobileOnlyIcon={true}
-        aria-label={sessionIdSelector === null ? "Log in" : "Your Profil"}
+        aria-label={(currentUser === undefined) ? "Log in" : "Your Profil"}
         label={
-          sessionIdSelector === null ? "Log in" : (currentUser?.name ?? "")
+          currentUser === undefined ? "Log in" : (currentUser?.name ?? "")
         }
         icon={<UserAvatar size="20" className="text-white" />}
         onClick={() => router.push("/login")}

@@ -1,24 +1,20 @@
 "use client";
 
 import { useEffect } from "react";
-import Cookies from "js-cookie";
 import { useDispatch } from "react-redux";
-import { setSessionId } from "@/store/store";
 import { useGetIsAuthQuery } from "@/store/api/api";
+import { setIsAuth } from "@/store/store";
 
 export default function AuthInitializer() {
   const dispatch = useDispatch();
-  const sessionId = Cookies.get("sessionId");
 
-  const { data: isAuth, isSuccess } = useGetIsAuthQuery(sessionId ?? "", {
-    skip: !sessionId,
-  });
+  const { data: isAuth, isSuccess } = useGetIsAuthQuery();
 
   useEffect(() => {
-    if (isSuccess && isAuth && sessionId) {
-      dispatch(setSessionId(sessionId));
+    if (isSuccess && isAuth) {
+      dispatch(setIsAuth(true));
     }
-  }, [isAuth, isSuccess, sessionId, dispatch]);
+  }, [isAuth, isSuccess, dispatch]);
 
   return null;
 }
