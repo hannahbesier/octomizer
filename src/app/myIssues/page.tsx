@@ -1,6 +1,6 @@
 "use client";
 import Table, { Column } from "../../components/Table";
-import { useGetIssuesQuery, useGetUserQuery } from "@/store/api/api";
+import { useGetIssuesQuery } from "@/store/api/api";
 import { IssueTable } from "@/store/types";
 import { useRouter } from "next/navigation";
 import Button from "@/components/Button";
@@ -8,9 +8,11 @@ import { Launch } from "@carbon/icons-react";
 import Skeleton from "@/components/Skeleton";
 import useMobile from "../../lib/useMobile";
 import checkAuth from "@/lib/checkAuth";
+import { useSelector } from "react-redux";
+import { user } from "@/store/store";
 
 function MyIssues() {
-  const { data: currentUser } = useGetUserQuery();
+  const currentUser: {id: number | undefined, name: string | undefined} = useSelector(user);
   const { data: issues, isLoading: issueIsLoading } = useGetIssuesQuery<
     Record<string, IssueTable[]>
   >(currentUser?.id ?? 0);

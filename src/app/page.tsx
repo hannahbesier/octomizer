@@ -4,21 +4,22 @@ import Card from "@/components/Card";
 import Skeleton from "@/components/Skeleton";
 import {
   useGetIssuesQuery,
-  useGetUserQuery,
   useGetUsersQuery,
 } from "@/store/api/api";
 import { IssueTable } from "@/store/types";
 import { Launch } from "@carbon/icons-react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { useSelector } from "react-redux";
+import { user } from "@/store/store";
 export default function Home() {
-  const { data: currentUser } = useGetUserQuery();
+  const currentUser: {id: number | undefined, name: string | undefined} = useSelector(user);
   const { data: issues, isLoading: issueIsLoading } = useGetIssuesQuery<
     Record<string, IssueTable[]>
   >(currentUser?.id ?? 0);
   const { data: users, isLoading: userIsLoading } = useGetUsersQuery();
   const router = useRouter();
-  if (!currentUser) return (
+  if (!currentUser.id) return (
     <div className="flex flex-col gap-10 sm:gap-15 h-full w-full items-center sm:justify-center ">
       <div className="flex sm:flex-row sm:gap-10 flex-col text-2xl sm:text-3xl w-fit pb-0 p-10 sm:w-full justify-center">
         <p>{"plan |"}</p>

@@ -2,7 +2,16 @@ export type State = {
   currentExpanded: number[];
   explorerContent: number;
   isAuth: boolean;
+  user: User;
 };
+export type User = {
+    id: number;
+    name: string;
+    email: string;
+    password: string;
+    createdAt: Date;
+    updatedAt: Date;
+} | undefined;
 export type BoardIssue = {
   id: number;
   name: string;

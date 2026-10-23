@@ -6,12 +6,13 @@ import {
 } from "@carbon/icons-react";
 import Button from "@/components/Button";
 import { useRouter } from "next/navigation";
-import { useGetUserQuery } from "@/store/api/api";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
+import { useSelector } from "react-redux";
+import { user } from "@/store/store";
 
 export default function MainHeader() {
-  const { data: currentUser } = useGetUserQuery();
+  const currentUser: {id: number | undefined, name: string | undefined} = useSelector(user);
   const [dark, setDark] = useState(false);
   useEffect(() => {
     const isDark = Cookies.get("theme") === "true";
@@ -46,9 +47,9 @@ export default function MainHeader() {
         primary={true}
         size="small"
         mobileOnlyIcon={true}
-        aria-label={(currentUser === undefined) ? "Log in" : "Your Profil"}
+        aria-label={(currentUser.id === undefined) ? "Log in" : "Your Profil"}
         label={
-          currentUser === undefined ? "Log in" : (currentUser?.name ?? "")
+          currentUser.id === undefined ? "Log in" : (currentUser?.name ?? "")
         }
         icon={<UserAvatar size="20" className="text-white" />}
         onClick={() => router.push("/login")}

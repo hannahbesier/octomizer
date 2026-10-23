@@ -2,19 +2,18 @@
 
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useGetIsAuthQuery } from "@/store/api/api";
-import { setIsAuth } from "@/store/store";
+import { useGetUserQuery } from "@/store/api/api";
+import { setUser } from "@/store/store";
 
 export default function AuthInitializer() {
   const dispatch = useDispatch();
-
-  const { data: isAuth, isSuccess } = useGetIsAuthQuery();
+  const { data: user } = useGetUserQuery();
 
   useEffect(() => {
-    if (isSuccess && isAuth) {
-      dispatch(setIsAuth(true));
+    if (user) {
+      dispatch(setUser(user));
     }
-  }, [isAuth, isSuccess, dispatch]);
+  }, [user, dispatch]);
 
   return null;
 }

@@ -51,9 +51,6 @@ export const api = apiService.injectEndpoints({
       query: () => "states/board",
       providesTags: () => ["Board"],
     }),
-    getIsAuth: builder.query<boolean, void>({
-      query: () => `session/auth`,
-    }),
     updateIssue: builder.mutation<Issue, UpdateIssueRequest>({
       query: ({ id, ...patch }) => ({
         url: `issues/issue/${id}`,
@@ -96,7 +93,6 @@ export const {
   useGetProjectsQuery,
   useGetProjectQuery,
   useGetBoardQuery,
-  useGetIsAuthQuery,
   useUpdateIssueMutation,
   useUpdateSessionMutation,
   useDeleteSessionMutation,

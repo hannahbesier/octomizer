@@ -9,7 +9,7 @@ import {
 } from "@/store/api/api";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setIsAuth } from "@/store/store";
+import { setUser } from "@/store/store";
 import { redirect, useRouter } from "next/navigation";
 import LoadingSpin from "@/components/LoadingSpin";
 
@@ -22,6 +22,7 @@ export default function Login() {
   const dispatch = useDispatch();
   const router = useRouter();
   const { data: currentUser } = useGetUserQuery();
+  
   async function handleLogin() {
     try {
       setLoginError(false);
@@ -29,16 +30,14 @@ export default function Login() {
         username: username,
         password: password,
       }).unwrap();
-      if (result) {
-
         dispatch(api.util.invalidateTags(["User"]));
-        dispatch(setIsAuth(true));
+        dispatch(setUser(currentUser));
         setUsername("");
         setPassword("");
         setTimeout(() => {
           redirect("/");
         }, 1000);
-      }
+      
     } catch (error) {
       if (error) setLoginError(true);
     }
@@ -46,7 +45,7 @@ export default function Login() {
   async function handleLogout() {
     try {
       await deleteSession({}).unwrap();
-      dispatch(setIsAuth(false));
+      dispatch(setUser(undefined));
       dispatch(api.util.resetApiState());
       router.refresh();
     } catch (error) {
@@ -58,11 +57,11 @@ export default function Login() {
       <div className="flex flex-col gap-8 w-100 items-center">
         {currentUser ? (
           <div className="flex flex-col pt-30 gap-8 items-center">
-            {currentUser === null ? (
+            {currentUser === undefined ? (
               <></>
             ) : (
               <h1 className="text-xl sm:text-3xl">
-                {"Welcome back, " + currentUser?.name}
+                {"Welcome back, " + currentUser.name}
               </h1>
             )}
             <Button
@@ -73,7 +72,7 @@ export default function Login() {
           </div>
         ) : (
           <div className="flex flex-col pt-30 gap-8 w-60 sm:w-100 items-center">
-            <h1 className="text-3xl">Login</h1>
+            <h1 className="text-3xl">Log in</h1>
             <Textfield
               label="Email"
               value={username}
@@ -94,7 +93,7 @@ export default function Login() {
             />
             <div className="flex flex-row gap-4 items-center">
               <Button
-                label="Login"
+                label="Log in"
                 primary={true}
                 onClick={() => handleLogin()}
               />{isLoading ? <LoadingSpin /> : <></>}</div>

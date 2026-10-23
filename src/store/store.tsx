@@ -1,6 +1,7 @@
 import { createSlice, configureStore, PayloadAction } from "@reduxjs/toolkit";
 import exampleStore from "./exampleStore";
 import { api } from "./api/api";
+import { User } from "./types";
 
 const worldSlice = createSlice({
   name: "wolrdData",
@@ -16,20 +17,20 @@ const worldSlice = createSlice({
     setExplorerContent: (state, action: PayloadAction<number>) => {
       state.explorerContent = action.payload;
     },
-    setIsAuth: (state, action: PayloadAction<boolean>) => {
-      state.isAuth = action.payload;
+    setUser: (state, action: PayloadAction<User>) => {
+      state.user = action.payload;
     },
   },
 });
 
-export const { addCurrentExpanded, setExplorerContent, setIsAuth } =
+export const { addCurrentExpanded, setExplorerContent, setUser } =
   worldSlice.actions;
 
 export const currentExpanded = (state: RootState) =>
   state.worldSlice.currentExpanded;
 export const explorerContent = (state: RootState) =>
   state.worldSlice.explorerContent;
-export const isAuth = (state: RootState) => state.worldSlice.isAuth;
+export const user = (state: RootState) => {return {id: state.worldSlice.user?.id, name: state.worldSlice.user?.name}};
 export const store = configureStore({
   reducer: {
     worldSlice: worldSlice.reducer,

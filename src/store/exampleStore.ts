@@ -5,6 +5,7 @@ export default function exampleStore(): State {
     explorerContent: 0,
     currentExpanded: [],
     isAuth: false,
+    user: undefined,
   }
 
 }
