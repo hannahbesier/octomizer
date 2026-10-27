@@ -13,7 +13,7 @@ import Image from "next/image";
 import { useSelector } from "react-redux";
 import { user } from "@/store/store";
 export default function Home() {
-  const currentUser: {id: number | undefined, name: string | undefined} = useSelector(user);
+  const currentUser: { id: number | undefined, name: string | undefined } = useSelector(user);
   const { data: issues, isLoading: issueIsLoading } = useGetIssuesQuery<
     Record<string, IssueTable[]>
   >(currentUser?.id ?? 0);
@@ -21,7 +21,8 @@ export default function Home() {
   const router = useRouter();
   if (!currentUser.id) return (
     <div className="flex flex-col gap-10 sm:gap-15 h-full w-full items-center sm:justify-center ">
-      <div className="flex sm:flex-row sm:gap-10 flex-col text-2xl sm:text-3xl w-fit pb-0 p-10 sm:w-full justify-center">
+      <div className="flex flex-col md:flex-row md:items-end w-fit md:w-200 pb-0 p-10"><h1 className="flex-1 text-2xl sm:text-6xl text-primaryLight">Octomizer</h1><p className="text-md sm:text-lg">| on mobile and desktop, in light and dark mode</p></div>
+      <div className="flex sm:flex-row sm:gap-10 flex-col text-xl sm:text-2xl w-fit pb-0 pt-0 p-10 sm:w-full justify-center">
         <p>{"plan |"}</p>
         <p>{"organize |"}</p>
         <p>{"document |"}</p>
@@ -30,6 +31,12 @@ export default function Home() {
       </div>
 
       <Button size="large" primary={true} label="Getting started" onClick={() => router.push("./login")} />
+      <div className="pl-10 pr-10 sm:pl-10 sm:pr-10 md:pl-20 md:pr-20 lg:pl-20 lg:pr-20 xl:pl-40 xl:pr-40 flex flex-col gap-5 sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-10">
+        <Card title="Issue Edit"><p>Edit and describe issues via Markdown, setting out who is assigned to them, which project they are part of, and their defined story points and tags.</p></Card>
+        <Card title="Team Board"><p>View the current issues sorted by state in your daily scrum ('To-do', 'Busy' and 'Done') and drag and drop issues to change their state.</p></Card>
+        <Card title="My Issues"><p>Users' specific views: current to-do and busy issues, team members.</p></Card>
+        <Card title="Projects"><p>Use an explorer to organize and document your projects, features and issues in a tree-hierarchy structure.</p></Card>
+      </div>
       <div className=" shadow dark:shadow-darkmode max-w-[60%] max-h-[60%]">
 
         <Image
