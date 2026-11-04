@@ -1,4 +1,4 @@
-import { createSlice, configureStore, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, configureStore, PayloadAction, createSelector } from "@reduxjs/toolkit";
 import exampleStore from "./exampleStore";
 import { api } from "./api/api";
 import { User } from "./types";
@@ -20,17 +20,27 @@ const worldSlice = createSlice({
     setUser: (state, action: PayloadAction<User>) => {
       state.user = action.payload;
     },
+    setDarkTheme: (state, action: PayloadAction<boolean>) => {
+      state.isDark = action.payload;
+    }
   },
 });
 
-export const { addCurrentExpanded, setExplorerContent, setUser } =
+export const { addCurrentExpanded, setExplorerContent, setUser, setDarkTheme } =
   worldSlice.actions;
 
 export const currentExpanded = (state: RootState) =>
   state.worldSlice.currentExpanded;
 export const explorerContent = (state: RootState) =>
   state.worldSlice.explorerContent;
-export const user = (state: RootState) => {return {id: state.worldSlice.user?.id, name: state.worldSlice.user?.name}};
+const selectUser = (state: RootState) => state.worldSlice.user;
+export const user = createSelector(
+  [selectUser],
+  (user) => ({
+    id: user?.id,
+    name: user?.name,
+  }));
+export const isDark = (state: RootState) => state.worldSlice.isDark;
 export const store = configureStore({
   reducer: {
     worldSlice: worldSlice.reducer,

@@ -6,6 +6,7 @@ export default function exampleStore(): State {
     currentExpanded: [],
     isAuth: false,
     user: undefined,
+    isDark: false,
   }
 
 }

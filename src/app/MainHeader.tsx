@@ -8,12 +8,13 @@ import Button from "@/components/Button";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
-import { useSelector } from "react-redux";
-import { user } from "@/store/store";
+import { useDispatch, useSelector } from "react-redux";
+import { user, setDarkTheme } from "@/store/store";
 
 export default function MainHeader() {
-  const currentUser: {id: number | undefined, name: string | undefined} = useSelector(user);
+  const currentUser: { id: number | undefined, name: string | undefined } = useSelector(user);
   const [dark, setDark] = useState(false);
+  const dispatch = useDispatch();
   useEffect(() => {
     const isDark = Cookies.get("theme") === "true";
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -39,6 +40,7 @@ export default function MainHeader() {
               secure: true,
               sameSite: "strict",
             });
+            dispatch(setDarkTheme(e.target.checked));
           }}
         />
       </div>

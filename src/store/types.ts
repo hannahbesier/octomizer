@@ -3,6 +3,7 @@ export type State = {
   explorerContent: number;
   isAuth: boolean;
   user: User;
+  isDark: boolean;
 };
 export type User = {
     id: number;

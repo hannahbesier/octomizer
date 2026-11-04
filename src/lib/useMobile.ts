@@ -6,7 +6,7 @@ export default function useMobile() {
   const [mobile, setMobile] = useState(false);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(max-width: 600px)');
+    const mediaQuery = window.matchMedia('(max-width: 640px)');
 
     const update = () => {
       setMobile(mediaQuery.matches);
