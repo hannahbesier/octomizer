@@ -6,9 +6,11 @@ Currently in development.
 
 Try it here: [https://octomizer.vercel.app](https://octomizer.vercel.app)
 
+View further the documentation at [/docs](/docs).
+
 ## The project
 
-- Fully **responsive** for web and mobile
+- Fully **responsive** for desktop and mobile
 
 - **Dark** and **light** mode available
 
