@@ -6,7 +6,7 @@ Currently in development.
 
 Try it here: [https://octomizer.vercel.app](https://octomizer.vercel.app)
 
-View further the documentation at [/docs](/docs).
+View further documentation at [/docs](/docs).
 
 ## The project
 
@@ -28,11 +28,11 @@ View further the documentation at [/docs](/docs).
 
 <p>
   <img src="public\img\IssueEditWhite.png" width="65%" />
-  <img src="public\img\IssueEditMobile.png" width="15%" />
+  <img src="public\img\MIssueEditWhite.png" width="15%" />
 </p>
 <p>
-  <img src="public\img\IssueBoardBlack.png" width="65%" />
-  <img src="public\img\IssueBoardBlackMobile.png" width="15%" />
+  <img src="public\img\IssueEditBlack.png" width="65%" />
+  <img src="public\img\MIssueEditBlack.png" width="15%" />
 </p>
 
 ## The technology
