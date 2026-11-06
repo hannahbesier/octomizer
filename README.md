@@ -80,7 +80,7 @@ Install the project dependencies:
 
     npm install
 
-Create a file called ```.env``` in the project next to README.md and enter ```DATABASE_URL=YOUR_DATABASE_URL_HERE```. To generate prisma files:
+Create a file called ```.env``` in the project next to README.md and enter ```DATABASE_URL=YOUR_DATABASE_URL_HERE``` and `APP_ORIGIN=http://localhost:3000` with your used origin. To generate prisma files:
 
     npx prisma generate
 
